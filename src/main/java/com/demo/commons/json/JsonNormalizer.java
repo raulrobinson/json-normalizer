@@ -58,11 +58,11 @@ public final class JsonNormalizer {
         return value.toString();
     }
 
-    private static Map<String, Object> normalizeMap(Map<?, ?> input) {
+    private static Object normalizeMap(Map<?, ?> input) {
 
         // Detecta estructura DynamoDB
         if (AttributeValueParser.isDynamoAttributeMap(input)) {
-            return (Map<String, Object>) AttributeValueParser.convertAttribute(input);
+            return normalize(AttributeValueParser.convertAttribute(input));
         }
 
         Map<String, Object> result = new LinkedHashMap<>();
